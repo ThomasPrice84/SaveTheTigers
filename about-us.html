@@ -20,6 +20,48 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <!-- Tiger Population Chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Tigers'],
+          ['1900', 100000],
+          ['1997', 3200],
+          ['1998', 3200],
+          ['1999', 3200],
+          ['2000', 3200],
+          ['2001', 3200],
+          ['2002', 3200],
+          ['2003', 3200],
+          ['2004', 3200],
+          ['2005', 3200],
+          ['2006', 3200],
+          ['2007', 3200],
+          ['2008', 3200],
+          ['2009', 3150],
+          ['2010', 3200],
+          ['2011', 3250],
+          ['2012', 3350],
+          ['2013', 3450],
+          ['2014', 3500],
+          ['2015', 3670],
+          ['2016', 3890]
+        ]);
+
+        var options = {
+          title: 'Tiger Population',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script><!-- Tiger Population Chart-->
+
 </head><!--/head-->
 <body>
     <header class="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
@@ -116,44 +158,14 @@
         </div><!--/.row-->
 
         <div class="gap"></div>
-        <h1 class="center">Meet the Team</h1>
-        <p class="lead center">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+        <h1 class="center">Tiger Population</h1>
+        <p class="lead center">Tigers are gravely in danger of extinction</p>
         <div class="gap"></div>
 
         <div id="meet-the-team" class="row">
-            <div class="col-md-3 col-xs-6">
-                <div class="center">
-                    <p><img class="img-responsive img-thumbnail img-circle" src="images/team-member.jpg" alt="" ></p>
-                    <h5>David J. Robbins<small class="designation muted">Senior Vice President</small></h5>
-                    <p>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor.</p>
-                    <a class="btn btn-social btn-facebook" href="#"><i class="icon-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="icon-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="icon-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="icon-linkedin"></i></a>
-                </div>
-            </div>
 
-            <div class="col-md-3 col-xs-6">
-                <div class="center">
-                    <p><img class="img-responsive img-thumbnail img-circle" src="images/team-member.jpg" alt="" ></p>
-                    <h5>David J. Robbins<small class="designation muted">Senior Vice President</small></h5>
-                    <p>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor.</p>
-                    <a class="btn btn-social btn-facebook" href="#"><i class="icon-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="icon-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="icon-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="icon-linkedin"></i></a>
-                </div>
-            </div>        
-            <div class="col-md-3 col-xs-6">
-                <div class="center">
-                    <p><img class="img-responsive img-thumbnail img-circle" src="images/team-member.jpg" alt="" ></p>
-                    <h5>David J. Robbins<small class="designation muted">Senior Vice President</small></h5>
-                    <p>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor.</p>
-                    <a class="btn btn-social btn-facebook" href="#"><i class="icon-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="icon-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="icon-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="icon-linkedin"></i></a>
-                </div>
-            </div>        
-            <div class="col-md-3 col-xs-6">
-                <div class="center">
-                    <p><img class="img-responsive img-thumbnail img-circle" src="images/team-member.jpg" alt="" ></p>
-                    <h5>David J. Robbins<small class="designation muted">Senior Vice President</small></h5>
-                    <p>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor.</p>
-                    <a class="btn btn-social btn-facebook" href="#"><i class="icon-facebook"></i></a> <a class="btn btn-social btn-google-plus" href="#"><i class="icon-google-plus"></i></a> <a class="btn btn-social btn-twitter" href="#"><i class="icon-twitter"></i></a> <a class="btn btn-social btn-linkedin" href="#"><i class="icon-linkedin"></i></a>
-                </div>
-            </div>
+            <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
         </div><!--/#meet-the-team-->
     </section><!--/#about-us-->
 
