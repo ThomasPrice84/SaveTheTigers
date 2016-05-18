@@ -44,16 +44,24 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Country', 'Tigers'],
+          ['Bangladesh', 440],
+          ['Bhutan', 103],
+          ['Cambodia', 0],
+          ['China', 45],
+          ['India', 2226],
+          ['Indonesia', 500],
+          ['Laos', 17],
+          ['Malaysia', 500],
+          ['Myanmar', 85],
+          ['Nepal', 198],
+          ['Russia', 562],
+          ['Thailand', 252],
+          ['Vietnam', 20]
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Tiger Population By Country in 2016'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
