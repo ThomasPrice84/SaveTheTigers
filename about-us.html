@@ -24,7 +24,94 @@
 
     <!--Google Analytics-->
 
-    <script>
+  
+    </script>
+
+    <!--End Google Analytics-->
+
+    <!--Tiger Pop by Country Pie Chart-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Country', 'Tigers'],
+          ['Bangladesh', 440],
+          ['Bhutan', 103],
+          ['Cambodia', 0],
+          ['China', 45],
+          ['India', 2226],
+          ['Indonesia', 500],
+          ['Laos', 17],
+          ['Malaysia', 500],
+          ['Myanmar', 85],
+          ['Nepal', 198],
+          ['Russia', 562],
+          ['Thailand', 252],
+          ['Vietnam', 20]
+        ]);
+
+        var options = {
+          title: 'Tiger Population By Country in 2016',
+          backgroundColor: '#f5f5f5'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <!--Tiger Pop by Country Pie Chart-->
+
+    <!-- Tiger Population Chart -->
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Tigers'],
+          [1900, 100000],
+          [1970, 35000],
+          [1976, 30000],
+          [1980, 25000],
+          [1982, 20000],
+          [1987, 15000],
+          [1990, 10000],
+          [1997, 5000],
+          [1998, 4200],
+          [1999, 3200],
+          [2000, 3200],
+          [2001, 3200],
+          [2002, 3200],
+          [2003, 3200],
+          [2004, 3200],
+          [2005, 3200],
+          [2006, 3200],
+          [2007, 3200],
+          [2008, 3200],
+          [2009, 3150],
+          [2010, 3200],
+          [2011, 3250],
+          [2012, 3350],
+          [2013, 3450],
+          [2014, 3500],
+          [2015, 3670],
+          [2016, 3890]
+        ]);
+
+        var options = {
+          title: 'Tiger Population',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}, format: 'none'},
+          vAxis: {minValue: 0},
+          backgroundColor: '#f5f5f5'
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script><!-- Tiger Population Chart-->
+  <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -189,93 +276,6 @@ $('#input-form').one('submit',function(){
         $('#input-name').addClass('active').val('Thank You!');
     });
 </script>
-    </script>
-
-    <!--End Google Analytics-->
-
-    <!--Tiger Pop by Country Pie Chart-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Country', 'Tigers'],
-          ['Bangladesh', 440],
-          ['Bhutan', 103],
-          ['Cambodia', 0],
-          ['China', 45],
-          ['India', 2226],
-          ['Indonesia', 500],
-          ['Laos', 17],
-          ['Malaysia', 500],
-          ['Myanmar', 85],
-          ['Nepal', 198],
-          ['Russia', 562],
-          ['Thailand', 252],
-          ['Vietnam', 20]
-        ]);
-
-        var options = {
-          title: 'Tiger Population By Country in 2016',
-          backgroundColor: '#f5f5f5'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
-    <!--Tiger Pop by Country Pie Chart-->
-
-    <!-- Tiger Population Chart -->
-    <script type="text/javascript">
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Tigers'],
-          [1900, 100000],
-          [1970, 35000],
-          [1976, 30000],
-          [1980, 25000],
-          [1982, 20000],
-          [1987, 15000],
-          [1990, 10000],
-          [1997, 5000],
-          [1998, 4200],
-          [1999, 3200],
-          [2000, 3200],
-          [2001, 3200],
-          [2002, 3200],
-          [2003, 3200],
-          [2004, 3200],
-          [2005, 3200],
-          [2006, 3200],
-          [2007, 3200],
-          [2008, 3200],
-          [2009, 3150],
-          [2010, 3200],
-          [2011, 3250],
-          [2012, 3350],
-          [2013, 3450],
-          [2014, 3500],
-          [2015, 3670],
-          [2016, 3890]
-        ]);
-
-        var options = {
-          title: 'Tiger Population',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}, format: 'none'},
-          vAxis: {minValue: 0},
-          backgroundColor: '#f5f5f5'
-        };
-
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script><!-- Tiger Population Chart-->
-
 </head><!--/head-->
 <body>
      <div id="piechart" style="width: 900px; height: 500px;"></div>
