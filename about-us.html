@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -31,7 +32,163 @@
 
         ga('create', 'UA-77880800-1', 'auto');
         ga('send', 'pageview');
+  <script type="text/javascript" src="https://www.google.com/jsapi"> </script>
+		 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"> </script> <!--  This is required!  It adds "loaders" for all of the Google APIs (Application Programming Interface) that will (may) be used in this program -->
+			<script type="text/javascript">  // This code *could* be put in another file...and likely I would ask you to do that, but it will make it too cumbersome for this tutorial!
+			
+	       		var five =0; 
+	    		var ten =0;
+	        	var twenty =0;
+                        var csvData ="";
+	       		var commas = 1; 
+		 
+					google.load("visualization", '1', {packages:['corechart']});  // This loads the Google "Visualization" API, which is needed to use Google Charts or Google Tables.  It's required code!  The arguments are API, Version, Packages (this one is not required)
+					google.setOnLoadCallback(readData);  // The google.setOnLoadCallback method will call the specified callback function once your d
+      
+		function readData() {
+                 var query = new google.visualization.Query(  // This Query is asking for the data from the Google Spreadsheet
+                //This is the URL of the data source -- it must be public and shared (see the video on creating a form and sharing settings).  This link has our TV watching data
+                'https://docs.google.com/spreadsheets/d/1miZ4LC5lk_bB1RT3Z6jRNKAvIVuzyxMFQgV9U1W1ARc/edit#gid=71083627');
+                // Send the query and when the query finishes, call the function "handleQueryResponse"
+                query.send(handleQueryResponse);
+         }
+	
+		function handleQueryResponse(response) {// This is enacted when the query response is returned.  If the query was successful, the response is the data table.  If the query failed, an error is returned, no table
+                 if (response.isError()) {
+                 alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+                  return; //Alert the user with the error code and return to the place where this function was called
+         }
+         
+		  var data = response.getDataTable();
+		  console.log(data); 
+		  //If you prefer (now that we've done so much with parsing CSV data), you can get the data in CSV form
+		   csvData = google.visualization.dataTableToCsv(data);
+		  console.log(csvData);
+		  
+			csvData = csvData.replace(/(\r\n|\n|\r)/gm,",");          
+	
+		 	for(var i = 0; i < csvData.length; i++)  
+				{ 
+					if(commas %2 == 0) 
+						{
+							if(csvData.substring(i,i+1) == "5")
+							{
+								five++;       
+                                                                console.log('added 5');
+							}
+                                                        if(csvData.substring(i,i+2)== "10")
+									{
+										ten++;
+                                                                                console.log('added 10');
+									}
+                                                        if(csvData.substring(i,i+2)== "20")
+									{
+										twenty++;
+                                                                                console.log('added 20');
+									}
+                                                        else{
+                                                                console.log("it didn't match: "+csvData.substring(i,i+2));
+                                                        }
+                                                                        }
+						
+					
+					if(csvData[i] == ",")
+						{
+							commas++
+                                                        console.log("added a comma");
+						}    
+				}
+                                
+				 
+			
+	 	console.log(five);	
+	    console.log(ten);	
+	    console.log(twenty);	
+  		addDonators(five,ten,twenty);
+			} //This brace ends the function handleQueryResponse 
+	
+			
+               
+		
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      sampleArray = [['donation type','Number of Donators']];
+      
+      function addDonators(type1, type2, type3){
+              sampleArray[1] = ['$5', type1];
+              sampleArray[2] = ['$10', type2];
+              sampleArray[3] = ['$20', type3];
+              drawChart();
+      }
+      
+      
+      
 
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(sampleArray);
+
+        var options = {
+          title: 'My Daily Activities',
+          slices: {
+            0: { color: '01B500' },
+            1: { color: '017500' },
+            2: { color: '003600'}
+          }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+      
+      
+      
+      
+      
+    </script>
+    
+    
+    
+        
+    
+    
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+<form id="input-form" action="" method="POST" target="no-target">
+  <input id="input-name" placeholder="Donate: 5, 10, 20" name="name">
+  <button id="form-submit" type="submit">Send</button>
+</form>
+<iframe src = "#" id = "no-target" name = "no-target" style = "visibility:hidden"></iframe> 
+
+
+<script>
+   
+    
+
+
+$('#input-form').one('submit',function(){
+        var inputName = encodeURIComponent($('#input-name').val());
+        var baseURL = "https://docs.google.com/a/greenwichschools.org/forms/d/1gh-8XsqyKhKA4eR2MwOmQI1hbvdJGEiDYPS8sAI3hgw/formResponse";   	     
+        var submitRef = '&submit=Submit';
+        
+        var inputNameId = "entry_1799224277";
+        
+        var submitURL = (baseURL + "?"+ inputNameId + "=" + inputName + submitRef);
+        console.log(submitURL);
+        $(this)[0].action=submitURL;
+        $('#input-name').addClass('active').val('Thank You!');
+    });
+</script>
     </script>
 
     <!--End Google Analytics-->
@@ -121,6 +278,7 @@
 
 </head><!--/head-->
 <body>
+     <div id="piechart" style="width: 900px; height: 500px;"></div>
     <header class="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
         <div class="container">
             <div class="navbar-header">
